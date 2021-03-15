@@ -1,8 +1,8 @@
 # DjWeb
-Short description and motivation.
+A rails mountalbe engine for managing DelayedJob
 
 ## Usage
-How to use my plugin.
+Install it inside your rails app.
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -19,6 +19,14 @@ $ bundle
 Or install it yourself as:
 ```bash
 $ gem install dj_web
+```
+
+## Security
+Add an environment variable for `username` and `password`
+
+```
+DJ_WEB_USERNAME=myuser
+DJ_WEB_PASSWORD=secured-password
 ```
 
 ## Contributing
