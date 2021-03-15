@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DJ Web Dashboard</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    "dj_web/application", media: "all" %>
+    <%= javascript_include_tag "dj_web/application" %>
+  </head>
+  <body class="antialiased">
+    <div class="page">
+      <div class="page-main">
+        <div class="header py-4">
+          <div class="container">
+            <div class="d-flex">
+              <%= link_to 'DJ Web', root_path, class: 'header-brand' %>
+              <small class="badge bg-dark" style="padding: 9px;"><%= Rails.env %></small>
+              <div class="d-flex order-lg-2 ml-auto">
+                <div class="nav-item d-none d-md-flex" style="padding-right: 0px;">
+                  <%= link_to content_tag(:i, nil, class: 'fe fe-github'), 'https://github.com/denmarkmeralpis/dj_web', target: '_blank', class: 'header-icon-link' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-3 ml-auto">
+                <form class="input-icon my-3 my-lg-0">
+                  <input type="search" class="form-control header-search" placeholder="Search for queues&hellip;" tabindex="1">
+                  <div class="input-icon-addon">
+                    <i class="fe fe-search"></i>
+                  </div>
+                </form>
+              </div>
+              <div class="col-lg order-lg-first">
+                <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+                  <li class="nav-item">
+                    <%= link_to content_tag(:i, nil, class: 'fe fe-activity') + ' Overview', pages_path, class: 'nav-link' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to content_tag(:i, nil, class: 'fe fe-box') + ' Enqueued', enqueued_jobs_path, class: 'nav-link' %>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <%= link_to content_tag(:i, nil, class: 'fe fe-pause') + ' Pending', pending_jobs_path, class: 'nav-link' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to content_tag(:i, nil, class: 'fe fe-loader') + ' Working', working_jobs_path, class: 'nav-link' %>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <%= link_to content_tag(:i, nil, class: 'fe fe-alert-triangle') + ' Failed', failed_jobs_path, class: 'nav-link' %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="my-3 my-md-5">
+          <div class="container">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="row align-items-center flex-row-reverse">
+          <div class="col-auto ml-lg-auto"></div>
+          <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
+            Copyright © <%= Time.current.year %> Tabler | Powered by <%= link_to 'delayed_job', 'https://github.com/collectiveidea/delayed_job', target: '_blank' %> and <%= link_to 'dj_web', 'https://github.com/denmarkmeralpis/dj_web', target: '_blank' %>.
+          </div>
+        </div>
+      </div>
+    </footer>
+    </div>
+  </body>
+</html>

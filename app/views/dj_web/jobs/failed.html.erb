@@ -1,0 +1,50 @@
+<div class="page-header">
+  <h1 class="page-title">
+    Failed Jobs
+  </h1>
+  <div style="margin-left: auto;">
+    <%= link_to 'Remove All', destroy_all_jobs_path, class: 'btn btn-sm btn-danger', data: { method: 'delete', confirm: 'Sure to DELETE ALL?' } %>
+    <%= link_to 'Reload All', reload_all_jobs_path, class: 'btn btn-sm btn-secondary', data: { method: 'patch', confirm: 'Sure to RELOAD ALL?' } %>
+  </div>
+</div>
+<div class="row row-cards">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive table-condensed">
+          <table class="table table-vcenter">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Priority</th>
+                <th>Created</th>
+                <th>Run At</th>
+                <th>Failed At</th>
+                <th class="text-center">Attempts</th>
+                <th class="w-1"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @jobs.each do |job| %>
+                <tr>
+                  <td><%= job.id %></td>
+                  <td class="text-muted"><%= job.queue %></td>
+                  <td class="text-muted"><%= job.priority %></td>
+                  <td class="text-muted"><%= job.created_at.strftime('%D %r') %></td>
+                  <td class="text-muted"><%= job.run_at&.strftime('%D %r') %></td>
+                  <td class="text-muted"><%= job.failed_at&.strftime('%D %r') %></td>
+                  <td class="text-muted text-center"><%= job.attempts %></td>
+                  <td><%= link_to 'More', job_path(job) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="text-right">
+            <%= will_paginate @jobs, container: false, class: "paginate" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

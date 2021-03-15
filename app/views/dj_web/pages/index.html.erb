@@ -1,0 +1,59 @@
+<div class="page-header">
+  <h1 class="page-title">
+   Overview 
+  </h1>
+</div>
+<div class="row row-cards">
+  <div class="col-lg-3">
+    <div class="card p-3">
+      <div class="d-flex align-items-center">
+        <span class="stamp stamp-md bg-muted mr-3">
+          <i class="fe fe-box"></i>
+        </span>
+        <div>
+          <h4 class="m-0"><%= link_to @jobs.enqueued.count, enqueued_jobs_path %></h4>
+          <small class="text-muted">Enqueued Jobs</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="card p-3">
+      <div class="d-flex align-items-center">
+        <span class="stamp stamp-md bg-yellow mr-3">
+          <i class="fe fe-pause"></i>
+        </span>
+        <div>
+          <h4 class="m-0"><%= link_to @jobs.pending.count, pending_jobs_path %></h4>
+          <small class="text-muted">Pending Jobs</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="card p-3">
+      <div class="d-flex align-items-center">
+        <span class="stamp stamp-md bg-green mr-3">
+          <i class="fe fe-loader"></i>
+        </span>
+        <div>
+          <h4 class="m-0"><%= link_to @jobs.working.count, working_jobs_path %></h4>
+          <small class="text-muted">Working Jobs</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="card p-3">
+      <div class="d-flex align-items-center">
+        <span class="stamp stamp-md bg-red mr-3">
+          <i class="fe fe-alert-triangle"></i>
+        </span>
+        <div>
+          <h4 class="m-0"><%= link_to @jobs.failed.count, failed_jobs_path %></h4>
+          <small class="text-muted">Failed Jobs</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

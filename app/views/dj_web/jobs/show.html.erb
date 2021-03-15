@@ -1,0 +1,88 @@
+<div class="page-header">
+  <h1 class="page-title">
+    <%= "DelayedJob #{@job.id} Details" %>
+  </h1>
+</div>
+<div class="row row-cards">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <div class="text-right">
+            <%= link_to 'Retry', retry_job_path(@job), class: 'btn btn-sm btn-dark', method: 'patch' %>
+            <%= link_to 'Remove', job_path(@job), class: 'btn btn-sm btn-danger', method: 'delete' %>
+            <%= link_to 'Reload', reload_job_path(@job), class: 'btn btn-sm btn-secondary', method: 'patch' %>
+          </div>
+          <table class="table table-vcenter">
+            <thead>
+              <tr>
+                <th>Info</th>
+                <th class="text-center">Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ID</td>
+                <td class="text-muted text-center"><%= @job.id %></td>
+              </tr>
+              <tr>
+                <td>Priority</td>
+                <td class="text-muted text-center"><%= @job.priority %></td>
+              </tr>
+              <tr>
+                <td>Attempts</td>
+                <td class="text-muted text-center"><%= @job.attempts %></td>
+              </tr>
+              <tr>
+                <td>Queue</td>
+                <td class="text-muted text-center"><%= @job.queue %></td>
+              </tr>
+              <tr>
+                <td>Run At</td>
+                <td class="text-muted text-center"><%= @job.run_at&.strftime('%D %r') %></td>
+              </tr>
+              <tr>
+                <td>Created At</td>
+                <td class="text-muted text-center"><%= @job.created_at&.strftime('%D %r') %></td>
+              </tr>
+              <% if @job.failed? %>
+                <tr>
+                  <td>Failed At</td>
+                  <td class="text-muted text-center"><%= @job.failed_at&.strftime('%D %r') %></td>
+                </tr>
+              <% elsif @job.working? %>
+                <tr>
+                  <td>Locked At</td>
+                  <td class="text-muted text-center"><%= @job.locked_at&.strftime('%D %r') %></td>
+                </tr>
+                <tr>
+                  <td>Locked By</td>
+                  <td class="text-muted text-center"><%= @job.locked_by %></td>
+                </tr>
+              <% end %>
+              <tr>
+                <td>Status</td>
+                <td style="text-align: center;"> 
+                  <% if @job.pending? %>
+                    <span class="btn btn-yellow btn-sm"><%= @job.status %></span>
+                  <% elsif @job.working? %>
+                    <span class="btn btn-green btn-sm"><%= @job.status %></span>
+                  <% elsif @job.failed? %>
+                    <span class="btn btn-red btn-sm"><%= @job.status %></span>
+                  <% else %>
+                    <span class="btn btn-muted btn-sm"><%= @job.status %></span>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h4 class="page-title">Handler</h4>
+          <pre class="highlight" style="font-family: monospace;"><%= @job.handler %></pre>
+          <h4 class="page-title">Last Error</h4>
+          <pre class="highlight" style="font-family: monospace;"><%= @job.last_error %></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
