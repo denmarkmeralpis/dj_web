@@ -38,3 +38,10 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+def http_login
+  ENV['DJ_WEB_USERNAME'] = 'user'
+  ENV['DJ_WEB_PASSWORD'] = 'pass'
+
+  request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials('user', 'pass')
+end

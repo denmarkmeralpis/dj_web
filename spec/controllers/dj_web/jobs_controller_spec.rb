@@ -4,6 +4,8 @@ module DjWeb
   RSpec.describe JobsController, type: :controller do
     routes { DjWeb::Engine.routes }
 
+    before { http_login }
+
     describe 'GET #enqueued' do
       before do
         create_list(:delayed_job, 3)
